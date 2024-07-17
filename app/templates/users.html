@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Users
+{% endblock %}
+
+{% block content %}
+  <h1>Users</h1>
+  <ul>
+    {% for user in users %}
+      <li><a href="{{ url_for('show_user', user_id=user.id) }}">{{ user.get_full_name() }}</a></li>
+    {% endfor %}
+  </ul>
+  <a href="{{ url_for('new_user') }}">Add New User</a>
+  <br>
+  <a href="{{url_for('new_tag')}}">Add New Tag</a>
+  <br>
+
+<hr>
+  <h2>Browse Tags:</h2>
+  <ul>
+    {% for tag in tags %}
+      <li><a href="{{ url_for('show_tag', tag_id=tag.id) }}">{{ tag.name }}</a></li>
+    {% endfor %}
+  </ul>
+  
+
+{% endblock %}

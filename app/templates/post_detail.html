@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Post Details{% endblock %}
+
+{% block content %}
+<img src='{{ user.image_url }}' width='200px' height='200px'>
+<h1>{{ post.title }}</h1>
+<p>{{ post.content }}</p>
+<p>Created at: {{ post.created_at }}</p>
+
+<h2>Tags:</h2>
+<ul>
+    {% for tag in tags %}
+        <li style="color:rgb(109, 186, 236)">
+            <a href="{{ url_for('show_tag', tag_id=tag.id) }}">#{{ tag.name }}</a>
+        </li>
+    {% else %}
+        <p>None</p>
+    {% endfor %}
+</ul>
+
+<!-- <a href="{{ url_for('edit_post', post_id=post.id) }}" >Edit Post</a> -->
+<form action="{{ url_for('edit_post', post_id=post.id) }}" method="get">
+    <button type="submit">Edit Post</button>
+</form>
+<form action="{{ url_for('delete_post', post_id=post.id) }}" method="post">
+    <button type="submit">Delete Post</button>
+</form>
+{% endblock %}
